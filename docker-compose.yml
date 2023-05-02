@@ -1,0 +1,14 @@
+version: "2.4"
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - 8080:80
+  echo-1:
+    image: hashicorp/http-echo
+    command: -listen=:8080 -text="hello echo-1"
+  echo-2:
+    image: hashicorp/http-echo
+    command: -listen=:8080 -text="hello echo-2"
